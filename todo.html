@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="todo-container">
+    <div class="header">
+      <h1 id="welcome"></h1>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+
+    <div class="todo-input">
+      <input type="text" id="taskInput" placeholder="Nouvelle tâche...">
+      <button onclick="addTask()">Ajouter</button>
+    </div>
+
+    <div class="filters">
+      <button onclick="setFilter('all')" class="filter-btn active">Toutes</button>
+      <button onclick="setFilter('active')" class="filter-btn">Actives</button>
+      <button onclick="setFilter('completed')" class="filter-btn">Terminées</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div class="todo-actions">
+      <button onclick="clearCompleted()">Effacer les terminées</button>
+      <button onclick="logout()">Déconnexion</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

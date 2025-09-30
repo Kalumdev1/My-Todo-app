@@ -1,0 +1,125 @@
+/* Dégradé animé en fond */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(270deg, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s, color 0.5s;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Conteneurs */
+.login-container, .todo-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 350px;
+  transition: background 0.5s, color 0.5s;
+}
+
+h1 { margin-bottom: 15px; color: #4b0082; }
+p { margin-bottom: 20px; color: #333; }
+
+/* Champs et boutons */
+input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #a18cd1;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #a18cd1;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover { background: #6a0dad; transform: scale(1.05); }
+
+/* Liste des tâches post-it */
+ul { list-style: none; padding: 0; margin: 20px 0; transition: opacity 0.2s ease; }
+li {
+  background: #f0e6ff;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transform: rotate(var(--rotate));
+  animation: fadeInUp 0.3s ease forwards, floatPostIt 4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: rotate(var(--rotate)) translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+li:active { transform: translateY(-2px) rotate(var(--rotate)) scale(1.02); }
+li.completed { text-decoration: line-through; color: gray; }
+li.removing {
+  opacity: 0;
+  transform: translateX(100%) rotate(var(--rotate));
+  transition: all 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {opacity:0; transform: translateY(10px) rotate(var(--rotate));}
+  100% {opacity:1; transform: translateY(0) rotate(var(--rotate));}
+}
+@keyframes floatPostIt {
+  0%,100% { transform: rotate(var(--rotate)) translateY(0); }
+  50% { transform: rotate(var(--rotate)) translateY(-3px); }
+}
+
+/* Input & boutons todo */
+.todo-input { display: flex; justify-content: center; gap: 10px; }
+.todo-actions { margin-top: 15px; display: flex; justify-content: space-between; }
+.filters { margin-top: 10px; display: flex; justify-content: space-around; }
+.filter-btn.active { background: #6a0dad; }
+.theme-toggle { background: transparent; border: none; font-size: 20px; cursor: pointer; margin-left: 10px; }
+
+/* === MODE SOMBRE === */
+body.dark {
+  background: linear-gradient(270deg, #232526, #414345);
+}
+body.dark .login-container,
+body.dark .todo-container { background: rgba(30, 30, 30, 0.95); color: white; }
+body.dark input { background: #444; color: white; border: 2px solid #666; }
+body.dark li { background: #555; color: white; }
+body.dark li:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
+body.dark button { background: #6a0dad; }
+body.dark button:hover { background: #9b30ff; }
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  .login-container, .todo-container { width: 90%; padding: 20px; }
+  input { width: 70%; font-size: 13px; }
+  button { padding: 8px 12px; font-size: 13px; }
+  .todo-input, .filters, .todo-actions { flex-direction: column; gap: 8px; }
+  li { font-size: 14px; padding: 8px; }
+  .theme-toggle { font-size: 18px; margin-left: 5px; }
+}
